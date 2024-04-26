@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Purchase Order</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.0.1/remixicon.min.css"
+      integrity="sha512-dTsohxprpcruDm4sjU92K0/Gf1nTKVVskNHLOGMqxmokBSkfOAyCzYSB6+5Z9UlDafFRpy5xLhvpkOImeFbX6A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600&family=Roboto:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.5/axios.js"
+      integrity="sha512-NF+M0CTEn9D9ENLJG/DxMiqAiaz3upEpfxyekwb+U2OG8JPJSh/bUgXToRtxoNW5A2ucCUCw7adbo3gU1ZdHUQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+  </head>
+
+  <style>
+    body * {
+      font-family: "Poppins", "Roboto", sans-serif;
+      font-weight: 500;
+    }
+
+    /* width */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+
+    /* Track */
+    ::-webkit-scrollbar-track {
+      box-shadow: inset 0 0 5px grey;
+      border-radius: 10px;
+    }
+
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+      background: #333333;
+      border-radius: 10px;
+    }
+
+    .top-heading {
+      line-height: 30px;
+    }
+
+    .top-heading::before {
+      content: "";
+      border: 3px solid #febe00;
+      position: absolute;
+      height: 100%;
+      border-radius: 4px;
+      left: 0;
+    }
+
+    .h-fit-content {
+      height: fit-content;
+    }
+
+    .w-fit-content {
+      width: fit-content;
+    }
+
+    .invoice-dropdown {
+      background: #3333331f;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .fs-15 {
+      font-size: 15px;
+    }
+
+    .fs-14 {
+      font-size: 14px;
+    }
+
+    .fs-13 {
+      font-size: 13px;
+    }
+
+    .fs-12 {
+      font-size: 12px;
+    }
+
+    .fixed-height {
+      height: 37px !important;
+      padding: 0 10px !important;
+    }
+
+    .cursor-p {
+      cursor: pointer;
+    }
+
+    .text-warning {
+      color: #dd8900 !important;
+    }
+
+    .text-danger {
+      color: #ff3030 !important;
+    }
+
+    .dropdown-menu {
+      box-shadow: 0px 2px 4px 0px #9494941a !important;
+    }
+
+    .vertical-navbar {
+      width: 18%;
+      height: 80vh;
+      float: left;
+      box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.1);
+      border-radius: 14px;
+      padding-top: 14px;
+    }
+
+    .content {
+      width: 80%;
+      float: left;
+    }
+
+    .nav-link {
+      color: #000000;
+      margin-bottom: 8px;
+      border-radius: 0px !important;
+    }
+
+    .nav-link.active {
+      background-color: #d7d8da !important;
+      color: #000 !important;
+      border-left: 4px solid black !important;
+      border-radius: 0px !important;
+    }
+
+    .content-box-one {
+      width: 48%;
+      padding-right: 2%;
+    }
+
+    .content-box-two {
+      width: 48%;
+      padding-left: 2%;
+      border-left: 1px solid rgb(196, 196, 196);
+    }
+
+    .table-rows{
+        background-color: rgba(51, 51, 51, 0.1);
+        box-shadow: inset 0 0 0 6px rgb(255, 255, 255);
+    }
+
+    .tablehead-content > th{
+      font-size: 14px;
+      font-weight:500;
+    }
+  </style>
+
+  <body>
+    <div class="py-2">
+      <h5 class="top-heading position-relative ps-3 mb-4">Settings</h5>
+      <div class="d-flex gap-3 align-items-center flex-wrap mb-4">
+        <!-- <h6 class="text-black-50 m-0" style="font-weight: 600;">List of Documents</h6> -->
+        <!-- <div class="position-relative ms-auto opacity-75">
+                <input type="text" placeholder="Search Here" style="width: 340px;"
+                    class="text-black-50 border rounded-2 fixed-height">
+                <i
+                    class="ri-search-line position-absolute top-0 bottom-0 end-0 text-black-50 my-auto h-fit-content pe-2"></i>
+            </div> -->
+        <!-- <div class="btn-group invoice-filter-dropdown">
+                <button
+                    class="border-0 rounded-2 text-black dropdown-toggle invoice-dropdown border-0 fs-15 fixed-height"
+                    type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    filter by Process Error
+                </button>
+                <ul class="dropdown-menu border-0 fs-15 px-2">
+                    <li class="fw-normal cursor-p border-bottom p-2">All Invoices</li>
+                    <li class="fw-normal cursor-p border-bottom p-2">Scanned</li>
+                    <li class="fw-normal cursor-p p-2">Fetched</li>
+                </ul>
+            </div> -->
+      </div>
+      <div>
+        <div class="container-fluid">
+          <div class="row">
+            <!-- Vertical Navbar -->
+            <div class="vertical-navbar">
+              <div
+                class="nav flex-column nav-pills"
+                id="v-pills-tab"
+                role="tablist"
+                aria-orientation="vertical"
+              >
+                <a
+                  class="nav-link active border-start border-dark border-4 rounded-start"
+                  id="v-pills-home-tab"
+                  data-toggle="pill"
+                  href="#v-pills-home"
+                  role="tab"
+                  aria-controls="v-pills-home"
+                  aria-selected="true"
+                  ><img src="/icons/user.png" alt="" class="me-2" />User</a
+                >
+                <a
+                  class="nav-link border-start border-dark border-4"
+                  id="v-pills-profile-tab"
+                  data-toggle="pill"
+                  href="#v-pills-profile"
+                  role="tab"
+                  aria-controls="v-pills-profile"
+                  aria-selected="false"
+                  ><img src="/icons/datasecurity.png" alt="" class="me-2" />
+                  Deta connectivity</a
+                >
+                <a
+                  class="nav-link border-start border-dark border-4"
+                  id="v-pills-messages-tab"
+                  data-toggle="pill"
+                  href="#v-pills-messages"
+                  role="tab"
+                  aria-controls="v-pills-messages"
+                  aria-selected="false"
+                  ><img
+                    src="/icons/Exception.png"
+                    alt=""
+                    class="me-2"
+                  />Exception</a
+                >
+              </div>
+            </div>
+            <!-- Content Area -->
+            <div class="content">
+              <div class="tab-content" id="v-pills-tabContent">
+                <div
+                  class="tab-pane fade show active"
+                  id="v-pills-home"
+                  role="tabpanel"
+                  aria-labelledby="v-pills-home-tab"
+                >
+                <div class="pb-4">
+                    <!-- <h5>User Configuration</h5> -->
+                    <div
+                    class="d-flex justify-content-between pb-2"
+                  >
+                    <h5>User Configuration</h5>
+                    <button type="button" class="btn btn-warning">
+                      + Add New User
+                    </button>
+                  </div>
+                  <div>
+                    <table class="table border">
+                        <thead class="table-dark">
+                          <tr class="tablehead-content">
+                            <th scope="col">Sr.No.</th>
+                            <th scope="col">ID</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Email Address</th>
+                            <th scope="col">User Name</th>
+                            <th scope="col">User Type</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr class="table-rows">
+                            <th scope="row">1</th>
+                            <td>Mark</td>
+                            <td>Mark</td>
+                            <td>Mark</td>
+                            <td>Mark</td>
+                            <td>
+                              <button class="btn btn-dark btn-sm">
+                                <img src="/icons/pen.png" alt="" />
+                              </button>
+                              <button class="btn btn-danger btn-sm">
+                                <img src="/icons/bin.png" alt="" />
+                              </button>
+                            </td>
+                          </tr>
+                          <tr class="table-rows">
+                            <th scope="row">1</th>
+                            <td>Mark</td>
+                            <td>Mark</td>
+                            <td>Mark</td>
+                            <td>Mark</td>
+                            <td>
+                              <button class="btn btn-dark btn-sm">
+                                <img src="/icons/pen.png" alt="" />
+                              </button>
+                              <button class="btn btn-danger btn-sm">
+                                <img src="/icons/bin.png" alt="" />
+                              </button>
+                            </td>
+                          </tr>
+                          <tr class="table-rows">
+                            <th scope="row">1</th>
+                            <td>Mark</td>
+                            <td>Mark</td>
+                            <td>Mark</td>
+                            <td>Mark</td>
+                            <td>
+                              <button class="btn btn-dark btn-sm">
+                                <img src="/icons/pen.png" alt="" />
+                              </button>
+                              <button class="btn btn-danger btn-sm">
+                                <img src="/icons/bin.png" alt="" />
+                              </button>
+                            </td>
+                          </tr>
+                          <tr class="table-rows">
+                            <th scope="row">1</th>
+                            <td>Mark</td>
+                            <td>Mark</td>
+                            <td>Mark</td>
+                            <td>Mark</td>
+                            <td>
+                              <button class="btn btn-dark btn-sm">
+                                <img src="/icons/pen.png" alt="" />
+                              </button>
+                              <button class="btn btn-danger btn-sm">
+                                <img src="/icons/bin.png" alt="" />
+                              </button>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                  </div>
+                  </div>
+                </div>
+
+                <!-- Data Connectivity-->
+                <div
+                  class="tab-pane fade"
+                  id="v-pills-profile"
+                  role="tabpanel"
+                  aria-labelledby="v-pills-profile-tab"
+                >
+                  <div>
+                    <div class="pb-4">
+                      <h5>Seta Connectivity</h5>
+                      <p class="text-muted" style="font-size: 14px">
+                        Simply enter email and drive link, and the application
+                        will automatically fetch the invoice document to
+                        proceed.
+                      </p>
+                    </div>
+                    <div class="d-flex flex-wrap">
+                      <div class="content-box-one">
+                        <div
+                          class="d-flex justify-content-between align-items-center pb-2"
+                        >
+                          <h6>Email Configuration</h6>
+                          <button type="button" class="btn btn-warning">
+                            + Add
+                          </button>
+                        </div>
+                        <div>
+                          <table class="table table-bordered border">
+                            <thead class="table-dark">
+                              <tr class="tablehead-content">
+                                <th scope="col">Sr.No.</th>
+                                <th scope="col">Email Configuration Name</th>
+                                <th scope="col">Handle</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr class="tablehead-content">
+                                <th scope="row">1</th>
+                                <td>Mark</td>
+                                <td>
+                                  <button class="btn btn-dark btn-sm">
+                                    <img src="/icons/pen.png" alt="" />
+                                  </button>
+                                  <button class="btn btn-danger btn-sm">
+                                    <img src="/icons/bin.png" alt="" />
+                                  </button>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                      <div class="content-box-two pl-4">
+                        <div
+                          class="d-flex justify-content-between align-items-center pb-2"
+                        >
+                          <h6>Drive Configuration</h6>
+                          <button type="button" class="btn btn-warning">
+                            + Add
+                          </button>
+                        </div>
+                        <div>
+                          <table class="table table-bordered rounded-3">
+                            <thead class="table-dark">
+                              <tr class="tablehead-content">
+                                <th scope="col">First</th>
+                                <th scope="col">Drive Configuration Name</th>
+                                <th scope="col">Handle</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr class="tablehead-content">
+                                <th scope="row">1</th>
+                                <td>Mark</td>
+                                <td>
+                                  <button class="btn btn-dark btn-sm">
+                                    <img src="/icons/pen.png" alt="" />
+                                  </button>
+                                  <button class="btn btn-danger btn-sm">
+                                    <img src="/icons/bin.png" alt="" />
+                                  </button>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Exception section -->
+
+                <div
+                  class="tab-pane fade"
+                  id="v-pills-messages"
+                  role="tabpanel"
+                  aria-labelledby="v-pills-messages-tab"
+                >
+                  <div class="pb-4">
+                    <h5>Exception Configuration</h5>
+                    <p class="text-muted" style="font-size: 14px">
+                        Choose critical fields from the list for matching. If these fields don't align during processing, the process will stop which will be blocking further process.
+                    </p>
+                    <div >
+                        <div class="w-100 bg-dark d-flex flex-wrap pt-2 pb-1 rounded-3">
+                            <div class="d-flex justify-content-center align-content-center" style="width: 40%;"><h6 class="text-light" >PO TYPE</h6></div>
+                            <div class="d-flex justify-content-center align-content-center" style="width: 60%;"><h6 class="text-light" >Exceptions</h6></div>
+                        </div>
+                        <div>
+
+                        </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      $(document).ready(function () {
+        $(".invoice-filter-dropdown ul li").click(function (e) {
+          const selectedItem = $(this).html();
+          // $(this).parents().find('button').html(selectedItem)
+          console.log($(this).parents().find());
+          // $('.invoice-filter-dropdown button').html(selectedItem)
+        });
+      });
+    </script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
