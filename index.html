@@ -23,6 +23,10 @@
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600&family=Roboto:wght@400;500&display=swap"
       rel="stylesheet"
     />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
@@ -125,16 +129,16 @@
     }
 
     .vertical-navbar {
-      width: 18%;
+      width: 13%;
       height: 80vh;
       float: left;
-      box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.1);
+      box-shadow:  4px 4px 8px rgba(0, 0, 0, 0.1);
       border-radius: 14px;
       padding-top: 14px;
     }
 
     .content {
-      width: 80%;
+      width: 82%;
       float: left;
     }
 
@@ -152,7 +156,7 @@
     }
 
     .content-box-one {
-      width: 48%;
+      width: 100%;
       padding-right: 2%;
     }
 
@@ -162,41 +166,55 @@
       border-left: 1px solid rgb(196, 196, 196);
     }
 
-    .table-rows{
-        background-color: rgba(51, 51, 51, 0.1);
-        box-shadow: inset 0 0 0 6px rgb(255, 255, 255);
+    .table-rows {
+      background-color: rgba(51, 51, 51, 0.1);
+      box-shadow: inset 0 0 0 6px rgb(255, 255, 255);
     }
 
-    .tablehead-content > th{
+    .tablehead-content > th {
       font-size: 14px;
-      font-weight:500;
+      font-weight: 500;
+    }
+
+    .modal.fade.show {
+      animation: slideInFromTop 0.6s forwards;
+    }
+
+    @keyframes slideInFromTop {
+      0% {
+        transform: translateY(-0%);
+        opacity: 0;
+      }
+      25% {
+        transform: translateY(-25%);
+        opacity: 0;
+      }
+      50% {
+        transform: translateY(-50%);
+        opacity: 0;
+      }
+      100% {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    .form-lables {
+      font-size: 12px;
+      font-weight: 500;
+    }
+
+    #exampleInputPassword1::placeholder,
+    .lable-color::placeholder {
+      font-size: 0.8em;
+      color: #b4b4b4;
     }
   </style>
 
   <body>
     <div class="py-2">
       <h5 class="top-heading position-relative ps-3 mb-4">Settings</h5>
-      <div class="d-flex gap-3 align-items-center flex-wrap mb-4">
-        <!-- <h6 class="text-black-50 m-0" style="font-weight: 600;">List of Documents</h6> -->
-        <!-- <div class="position-relative ms-auto opacity-75">
-                <input type="text" placeholder="Search Here" style="width: 340px;"
-                    class="text-black-50 border rounded-2 fixed-height">
-                <i
-                    class="ri-search-line position-absolute top-0 bottom-0 end-0 text-black-50 my-auto h-fit-content pe-2"></i>
-            </div> -->
-        <!-- <div class="btn-group invoice-filter-dropdown">
-                <button
-                    class="border-0 rounded-2 text-black dropdown-toggle invoice-dropdown border-0 fs-15 fixed-height"
-                    type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    filter by Process Error
-                </button>
-                <ul class="dropdown-menu border-0 fs-15 px-2">
-                    <li class="fw-normal cursor-p border-bottom p-2">All Invoices</li>
-                    <li class="fw-normal cursor-p border-bottom p-2">Scanned</li>
-                    <li class="fw-normal cursor-p p-2">Fetched</li>
-                </ul>
-            </div> -->
-      </div>
+      <div class="d-flex gap-3 align-items-center flex-wrap mb-4"></div>
       <div>
         <div class="container-fluid">
           <div class="row">
@@ -243,6 +261,17 @@
                     class="me-2"
                   />Exception</a
                 >
+                <a
+                  class="nav-link border-start border-dark border-4"
+                  id="v-pills-ocr-tab"
+                  data-toggle="pill"
+                  href="#v-pills-ocr"
+                  role="tab"
+                  aria-controls="v-pills-ocr"
+                  aria-selected="false"
+                  ><img src="/icons/Exception.png" alt="" class="me-2" />SAP and
+                  OCR</a
+                >
               </div>
             </div>
             <!-- Content Area -->
@@ -254,18 +283,16 @@
                   role="tabpanel"
                   aria-labelledby="v-pills-home-tab"
                 >
-                <div class="pb-4">
+                  <div class="pb-4">
                     <!-- <h5>User Configuration</h5> -->
-                    <div
-                    class="d-flex justify-content-between pb-2"
-                  >
-                    <h5>User Configuration</h5>
-                    <button type="button" class="btn btn-warning">
-                      + Add New User
-                    </button>
-                  </div>
-                  <div>
-                    <table class="table border">
+                    <div class="d-flex justify-content-between pb-2">
+                      <h5>User Configuration</h5>
+                      <button type="button" class="btn btn-warning">
+                        + Add New User
+                      </button>
+                    </div>
+                    <div>
+                      <table class="table border">
                         <thead class="table-dark">
                           <tr class="tablehead-content">
                             <th scope="col">Sr.No.</th>
@@ -276,7 +303,7 @@
                             <th scope="col">User Type</th>
                           </tr>
                         </thead>
-                        <tbody>
+                        <!-- <tbody>
                           <tr class="table-rows">
                             <th scope="row">1</th>
                             <td>Mark</td>
@@ -337,9 +364,18 @@
                               </button>
                             </td>
                           </tr>
-                        </tbody>
+                        </tbody> -->
                       </table>
-                  </div>
+                    </div>
+                    <div class="d-flex w-100 justify-content-center">
+                      <div
+                        class="pt-lg-5 d-flex flex-column align-items-center"
+                      >
+                        <img src="/icons/nouser.png" alt="" />
+                        <h5>No Users Found</h5>
+                        <p>Add users to see the list of users</p>
+                      </div>
+                    </div>
                   </div>
                 </div>
 
@@ -365,67 +401,459 @@
                           class="d-flex justify-content-between align-items-center pb-2"
                         >
                           <h6>Email Configuration</h6>
-                          <button type="button" class="btn btn-warning">
-                            + Add
-                          </button>
+                          <!-- <button type="button" class="btn btn-warning">
+                            + Add Configuration
+                          </button> -->
+                          <div class="btn-group">
+                            <button
+                              type="button"
+                              class="btn btn-warning dropdown-toggle"
+                              data-toggle="dropdown"
+                              aria-haspopup="true"
+                              aria-expanded="false"
+                            >
+                              + Add Configuration
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-lg">
+                              <button
+                                class="dropdown-item"
+                                type="button"
+                                data-toggle="modal"
+                                data-target="#exampleModalCenter"
+                              >
+                                + Email
+                              </button>
+                              <button
+                                class="dropdown-item"
+                                type="button"
+                                data-toggle="modal"
+                                data-target="#exampleModalCenter2"
+                              >
+                                + Drive
+                              </button>
+                            </div>
+                          </div>
                         </div>
+
+                        <!--Add Email Model Modal -->
+                        <!-- <div
+                          class="modal fade"
+                          id="exampleModalCenter"
+                          tabindex="-1"
+                          role="dialog"
+                          aria-labelledby="exampleModalCenterTitle"
+                          aria-hidden="true"
+                        >
+                          <div
+                            class="modal-dialog modal-dialog-centered"
+                            role="document"
+                          >
+                            <div class="modal-content">
+                              <div class="modal-body p-4">
+                                <div
+                                  class="d-flex justify-content-between align-items-center mb-2"
+                                >
+                                  <h6>Add Email Configuration</h6>
+                                  <button
+                                    class="border-0 bg-transparent"
+                                    data-dismiss="modal"
+                                  >
+                                    <img src="/icons/close.png" alt="" />
+                                  </button>
+                                </div>
+                                <div>
+                                  <div class="form-group">
+                                    <label class="form-lables text-muted"
+                                      >Cofiguration name</label
+                                    >
+                                    <input
+                                      type="text"
+                                      class="form-control"
+                                      id="exampleInputPassword1"
+                                      placeholder="Enter Configuration Name"
+                                    />
+                                  </div>
+                                  <div class="form-group">
+                                    <label class="form-lables text-muted"
+                                      >Email Address</label
+                                    >
+                                    <input
+                                      type="email"
+                                      class="form-control"
+                                      id="exampleInputPassword1"
+                                      placeholder=" Enter Email Address"
+                                    />
+                                  </div>
+                                  <div class="form-group">
+                                    <label class="form-lables text-muted"
+                                      >Email Applcation Password</label
+                                    >
+                                    <input
+                                      type="password"
+                                      class="form-control"
+                                      id="exampleInputPassword1"
+                                      placeholder="Password"
+                                    />
+                                  </div>
+                                  <div class="form-group">
+                                    <label class="form-lables text-muted"
+                                      >SMAP Port</label
+                                    >
+                                    <input
+                                      type="text"
+                                      class="form-control"
+                                      id="exampleInputPassword1"
+                                      placeholder="Add SMAP Port"
+                                    />
+                                  </div>
+                                  <div class="form-group">
+                                    <label class="form-lables text-muted"
+                                      >SMTP Server</label
+                                    >
+                                    <input
+                                      type="text"
+                                      class="form-control"
+                                      id="exampleInputPassword1"
+                                      placeholder="Add SMTP Server"
+                                    />
+                                  </div>
+                                </div>
+                                <div class="d-flex justify-content-center">
+                                  <button
+                                    type="button"
+                                    class="btn w-100 btn-warning"
+                                  >
+                                    Add
+                                  </button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div> -->
+
+                        <div
+                          class="modal fade"
+                          id="exampleModalCenter"
+                          tabindex="-1"
+                          role="dialog"
+                          aria-labelledby="exampleModalCenterTitle"
+                          aria-hidden="true"
+                        >
+                          <div
+                            class="modal-dialog modal-dialog-centered"
+                            role="document"
+                          >
+                            <div class="modal-content">
+                              <div class="modal-body p-4">
+                                <div
+                                  class="d-flex justify-content-between align-items-center mb-2"
+                                >
+                                  <h6>Add Email Configuration</h6>
+                                  <button
+                                    class="border-0 bg-transparent"
+                                    data-dismiss="modal"
+                                  >
+                                    <img src="/icons/close.png" alt="" />
+                                  </button>
+                                </div>
+                                <div>
+                                  <div class="form-group">
+                                    <label
+                                      class="form-lables text-muted"
+                                      for="emailConfigName"
+                                      >Configuration name</label
+                                    >
+                                    <input
+                                      type="text"
+                                      class="form-control"
+                                      id="emailConfigName"
+                                      placeholder="Enter Configuration Name"
+                                    />
+                                  </div>
+                                  <div class="form-group">
+                                    <label
+                                      class="form-lables text-muted"
+                                      for="emailAddress"
+                                      >Email Address</label
+                                    >
+                                    <input
+                                      type="email"
+                                      class="form-control"
+                                      id="emailAddress"
+                                      placeholder="Enter Email Address"
+                                    />
+                                  </div>
+                                  <div class="form-group">
+                                    <label
+                                      class="form-lables text-muted"
+                                      for="emailAppPassword"
+                                      >Email Application Password</label
+                                    >
+                                    <input
+                                      type="password"
+                                      class="form-control"
+                                      id="emailAppPassword"
+                                      placeholder="Password"
+                                    />
+                                  </div>
+                                  <div class="form-group">
+                                    <label
+                                      class="form-lables text-muted"
+                                      for="smapPort"
+                                      >SMAP Port</label
+                                    >
+                                    <input
+                                      type="text"
+                                      class="form-control"
+                                      id="smapPort"
+                                      placeholder="Add SMAP Port"
+                                    />
+                                  </div>
+                                  <div class="form-group">
+                                    <label
+                                      class="form-lables text-muted"
+                                      for="smtpServer"
+                                      >SMTP Server</label
+                                    >
+                                    <input
+                                      type="text"
+                                      class="form-control"
+                                      id="smtpServer"
+                                      placeholder="Add SMTP Server"
+                                    />
+                                  </div>
+                                </div>
+                                <div class="d-flex justify-content-center">
+                                  <button
+                                    id="addEmailBtn"
+                                    type="button"
+                                    class="btn w-100 btn-warning"
+                                    data-dismiss="modal"
+                                    onclick="addEmailConfiguration()"
+                                  >
+                                    Add
+                                  </button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <!-- Drive Configuration Modal -->
+                        <!-- <div
+                          class="modal fade"
+                          id="exampleModalCenter2"
+                          tabindex="-1"
+                          role="dialog"
+                          aria-labelledby="exampleModalCenter2Title"
+                          aria-hidden="true"
+                        >
+                          <div
+                            class="modal-dialog modal-dialog-centered"
+                            role="document"
+                          >
+                            <div class="modal-content">
+                              <div class="modal-body p-4">
+                                <div
+                                  class="d-flex justify-content-between align-items-center mb-2"
+                                >
+                                  <h6>Add Drive Configuration</h6>
+                                  <button
+                                    class="border-0 bg-transparent"
+                                    data-dismiss="modal"
+                                  >
+                                    <img src="/icons/close.png" alt="" />
+                                  </button>
+                                </div>
+                                <div>
+                                  <div class="form-group">
+                                    <label class="form-lables text-muted"
+                                      >Configuration name</label
+                                    >
+                                    <input
+                                      type="text"
+                                      class="form-control lable-color"
+                                      id="driveConfigurationName"
+                                      placeholder="Enter Configuration Name"
+                                    />
+                                  </div>
+                                  <div class="form-group">
+                                    <label class="form-lables text-muted"
+                                      >IP Address</label
+                                    >
+                                    <input
+                                      type="email"
+                                      class="form-control lable-color"
+                                      id="driveEmailAddress"
+                                      placeholder="Enter Email Address"
+                                    />
+                                  </div>
+                                  <div class="form-group">
+                                    <label class="form-lables text-muted"
+                                      >Folder Name</label
+                                    >
+                                    <input
+                                      type="password"
+                                      class="form-control lable-color"
+                                      id="driveEmailPassword"
+                                      placeholder="text"
+                                    />
+                                  </div>
+                                  <div class="form-group">
+                                    <label class="form-lables text-muted"
+                                      >Username</label
+                                    >
+                                    <input
+                                      type="text"
+                                      class="form-control lable-color"
+                                      id="driveSmapPort"
+                                      placeholder="Add SMAP Port"
+                                    />
+                                  </div>
+                                  <div class="form-group">
+                                    <label class="form-lables text-muted"
+                                      >Password</label
+                                    >
+                                    <input
+                                      type="password"
+                                      class="form-control lable-color"
+                                      id="driveSmtpServer"
+                                      placeholder="password"
+                                    />
+                                  </div>
+                                </div>
+                                <div class="d-flex justify-content-center">
+                                  <button
+                                    type="button"
+                                    class="btn w-100 btn-warning"
+                                  >
+                                    Add
+                                  </button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div> -->
+                        <div
+                          class="modal fade"
+                          id="exampleModalCenter2"
+                          tabindex="-1"
+                          role="dialog"
+                          aria-labelledby="exampleModalCenter2Title"
+                          aria-hidden="true"
+                        >
+                          <div
+                            class="modal-dialog modal-dialog-centered"
+                            role="document"
+                          >
+                            <div class="modal-content">
+                              <div class="modal-body p-4">
+                                <div
+                                  class="d-flex justify-content-between align-items-center mb-2"
+                                >
+                                  <h6>Add Drive Configuration</h6>
+                                  <button
+                                    class="border-0 bg-transparent"
+                                    data-dismiss="modal"
+                                  >
+                                    <img src="/icons/close.png" alt="" />
+                                  </button>
+                                </div>
+                                <div>
+                                  <div class="form-group">
+                                    <label
+                                      class="form-labels text-muted"
+                                      for="driveConfigurationName"
+                                      >Configuration name</label
+                                    >
+                                    <input
+                                      type="text"
+                                      class="form-control"
+                                      id="driveConfigurationName"
+                                      placeholder="Enter Configuration Name"
+                                    />
+                                  </div>
+                                  <div class="form-group">
+                                    <label
+                                      class="form-labels text-muted"
+                                      for="driveEmailAddress"
+                                      >Email Address</label
+                                    >
+                                    <input
+                                      type="email"
+                                      class="form-control"
+                                      id="driveEmailAddress"
+                                      placeholder="Enter Email Address"
+                                    />
+                                  </div>
+                                  <div class="form-group">
+                                    <label
+                                      class="form-labels text-muted"
+                                      for="driveFolderName"
+                                      >Folder Name</label
+                                    >
+                                    <input
+                                      type="text"
+                                      class="form-control"
+                                      id="driveFolderName"
+                                      placeholder="Enter Folder Name"
+                                    />
+                                  </div>
+                                  <div class="form-group">
+                                    <label
+                                      class="form-labels text-muted"
+                                      for="driveUsername"
+                                      >Username</label
+                                    >
+                                    <input
+                                      type="text"
+                                      class="form-control"
+                                      id="driveUsername"
+                                      placeholder="Enter Username"
+                                    />
+                                  </div>
+                                  <div class="form-group">
+                                    <label
+                                      class="form-labels text-muted"
+                                      for="drivePassword"
+                                      >Password</label
+                                    >
+                                    <input
+                                      type="password"
+                                      class="form-control"
+                                      id="drivePassword"
+                                      placeholder="Enter Password"
+                                    />
+                                  </div>
+                                </div>
+                                <div class="d-flex justify-content-center">
+                                  <button
+                                    id="addDriveBtn"
+                                    type="button"
+                                    data-dismiss="modal"
+                                    class="btn w-100 btn-warning"
+                                  >
+                                    Add
+                                  </button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
                         <div>
                           <table class="table table-bordered border">
                             <thead class="table-dark">
                               <tr class="tablehead-content">
                                 <th scope="col">Sr.No.</th>
                                 <th scope="col">Email Configuration Name</th>
-                                <th scope="col">Handle</th>
+                                <th scope="col">Configuration Type</th>
+                                <th scope="col">Action</th>
                               </tr>
                             </thead>
-                            <tbody>
-                              <tr class="tablehead-content">
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>
-                                  <button class="btn btn-dark btn-sm">
-                                    <img src="/icons/pen.png" alt="" />
-                                  </button>
-                                  <button class="btn btn-danger btn-sm">
-                                    <img src="/icons/bin.png" alt="" />
-                                  </button>
-                                </td>
-                              </tr>
-                            </tbody>
-                          </table>
-                        </div>
-                      </div>
-                      <div class="content-box-two pl-4">
-                        <div
-                          class="d-flex justify-content-between align-items-center pb-2"
-                        >
-                          <h6>Drive Configuration</h6>
-                          <button type="button" class="btn btn-warning">
-                            + Add
-                          </button>
-                        </div>
-                        <div>
-                          <table class="table table-bordered rounded-3">
-                            <thead class="table-dark">
-                              <tr class="tablehead-content">
-                                <th scope="col">First</th>
-                                <th scope="col">Drive Configuration Name</th>
-                                <th scope="col">Handle</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <tr class="tablehead-content">
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>
-                                  <button class="btn btn-dark btn-sm">
-                                    <img src="/icons/pen.png" alt="" />
-                                  </button>
-                                  <button class="btn btn-danger btn-sm">
-                                    <img src="/icons/bin.png" alt="" />
-                                  </button>
-                                </td>
-                              </tr>
+                            <tbody id="configurationsTableBody">
+                              <!-- Added ID attribute -->
+                              <!-- Existing table rows will be appended dynamically here -->
                             </tbody>
                           </table>
                         </div>
@@ -445,17 +873,74 @@
                   <div class="pb-4">
                     <h5>Exception Configuration</h5>
                     <p class="text-muted" style="font-size: 14px">
-                        Choose critical fields from the list for matching. If these fields don't align during processing, the process will stop which will be blocking further process.
+                      Choose critical fields from the list for matching. If
+                      these fields don't align during processing, the process
+                      will stop which will be blocking further process.
                     </p>
-                    <div >
-                        <div class="w-100 bg-dark d-flex flex-wrap pt-2 pb-1 rounded-3">
-                            <div class="d-flex justify-content-center align-content-center" style="width: 40%;"><h6 class="text-light" >PO TYPE</h6></div>
-                            <div class="d-flex justify-content-center align-content-center" style="width: 60%;"><h6 class="text-light" >Exceptions</h6></div>
+                    <div>
+                      <div
+                        class="w-100 bg-dark d-flex flex-wrap pt-2 pb-1 rounded-3"
+                      >
+                        <div
+                          class="d-flex justify-content-center align-content-center"
+                          style="width: 40%"
+                        >
+                          <h6 class="text-light">PO TYPE</h6>
                         </div>
-                        <div>
-
+                        <div
+                          class="d-flex justify-content-center align-content-center"
+                          style="width: 60%"
+                        >
+                          <h6 class="text-light">Exceptions</h6>
                         </div>
+                      </div>
+                      <div></div>
                     </div>
+                  </div>
+                </div>
+
+                <div
+                  class="tab-pane fade"
+                  id="v-pills-ocr"
+                  role="tabpanel"
+                  aria-labelledby="v-pills-ocr-tab"
+                >
+                  <div class="mb-4">
+                    <h5>SAP and OCR Configuration</h5>
+                    <p class="text-muted" style="font-size: 14px">
+                      Choose critical fields from the list for matching. If
+                      these fields don't align during processing, the process
+                      will stop which will be blocking further process.
+                    </p>
+                  </div>
+                  <div class="w-100">
+                    <div class="" style="border-bottom: 1px dashed">
+                      <h6>SAP Integration</h6>
+                      <div class="mb-4 d-flex">
+                        <input
+                          type="email"
+                          class="form-control"
+                          id="exampleInputEmail1"
+                          aria-describedby="emailHelp"
+                        />
+                        <button class="btn btn-dark ms-2"><img src="/icons/pen.png" alt=""></button>
+                      </div>
+                    </div>
+                    <div class="pt-2 mb-4">
+                      <h6>OCR Integration</h6>
+                      <div class="mb-4 d-flex">
+                        <input
+                          type="email"
+                          class="form-control"
+                          id="exampleInputEmail1"
+                          aria-describedby="emailHelp"
+                        />
+                        <button class="btn btn-dark ms-2"><img src="/icons/pen.png" alt=""></button>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="w-100">
+                    <button class="w-100 btn btn-warning">Save changes</button>
                   </div>
                 </div>
               </div>
@@ -474,6 +959,7 @@
         });
       });
     </script>
+    <script src="script.js"></script>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
