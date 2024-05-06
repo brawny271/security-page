@@ -1,0 +1,73 @@
+@keyframes slideInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.slide-in-right {
+  animation: slideInRight 0.3s ease forwards;
+}
+
+.inputTextStyle {
+  font-size: 13px;
+  font-weight: 500;
+  color: black;
+}
+
+.multiple-option {
+  width: 96%;
+  transition: 0.3 ease;
+}
+
+.multiple-option:hover {
+  background-color: rgba(255, 207, 64, 0.3);
+  border-radius: 4px;
+}
+
+.exceptions-form-container {
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  gap: 10px;
+}
+
+.exception-checkbox-container {
+  max-height: 475px;
+  overflow-y: auto;
+}
+.exception-checkbox-container::-webkit-scrollbar {
+  display: none;
+}
+.box {
+  display: flex;
+  flex-wrap: wrap;
+  background-color: #ffffff;
+  padding: 8px;
+  padding-top: 7px;
+  box-sizing: border-box;
+  height: 36px;
+  overflow: hidden;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  width: 100%;
+  /* width: 532px; */
+  /* max-width: 521.73px;
+  min-width: 521.73px; */
+}
+
+.box-lable {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.exceptio-checkbox {
+  margin-top: 3px;
+  height: 14px;
+  width: 14px;
+  margin-right: 6px;
+  cursor: pointer;
+}

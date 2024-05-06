@@ -27,6 +27,7 @@
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
     />
+    <link rel="stylesheet" href="style.css" />
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
@@ -132,7 +133,7 @@
       width: 13%;
       height: 80vh;
       float: left;
-      box-shadow:  4px 4px 8px rgba(0, 0, 0, 0.1);
+      box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.1);
       border-radius: 14px;
       padding-top: 14px;
     }
@@ -208,6 +209,14 @@
     .lable-color::placeholder {
       font-size: 0.8em;
       color: #b4b4b4;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    input[readonly] {
+      border: none;
     }
   </style>
 
@@ -436,100 +445,6 @@
                         </div>
 
                         <!--Add Email Model Modal -->
-                        <!-- <div
-                          class="modal fade"
-                          id="exampleModalCenter"
-                          tabindex="-1"
-                          role="dialog"
-                          aria-labelledby="exampleModalCenterTitle"
-                          aria-hidden="true"
-                        >
-                          <div
-                            class="modal-dialog modal-dialog-centered"
-                            role="document"
-                          >
-                            <div class="modal-content">
-                              <div class="modal-body p-4">
-                                <div
-                                  class="d-flex justify-content-between align-items-center mb-2"
-                                >
-                                  <h6>Add Email Configuration</h6>
-                                  <button
-                                    class="border-0 bg-transparent"
-                                    data-dismiss="modal"
-                                  >
-                                    <img src="/icons/close.png" alt="" />
-                                  </button>
-                                </div>
-                                <div>
-                                  <div class="form-group">
-                                    <label class="form-lables text-muted"
-                                      >Cofiguration name</label
-                                    >
-                                    <input
-                                      type="text"
-                                      class="form-control"
-                                      id="exampleInputPassword1"
-                                      placeholder="Enter Configuration Name"
-                                    />
-                                  </div>
-                                  <div class="form-group">
-                                    <label class="form-lables text-muted"
-                                      >Email Address</label
-                                    >
-                                    <input
-                                      type="email"
-                                      class="form-control"
-                                      id="exampleInputPassword1"
-                                      placeholder=" Enter Email Address"
-                                    />
-                                  </div>
-                                  <div class="form-group">
-                                    <label class="form-lables text-muted"
-                                      >Email Applcation Password</label
-                                    >
-                                    <input
-                                      type="password"
-                                      class="form-control"
-                                      id="exampleInputPassword1"
-                                      placeholder="Password"
-                                    />
-                                  </div>
-                                  <div class="form-group">
-                                    <label class="form-lables text-muted"
-                                      >SMAP Port</label
-                                    >
-                                    <input
-                                      type="text"
-                                      class="form-control"
-                                      id="exampleInputPassword1"
-                                      placeholder="Add SMAP Port"
-                                    />
-                                  </div>
-                                  <div class="form-group">
-                                    <label class="form-lables text-muted"
-                                      >SMTP Server</label
-                                    >
-                                    <input
-                                      type="text"
-                                      class="form-control"
-                                      id="exampleInputPassword1"
-                                      placeholder="Add SMTP Server"
-                                    />
-                                  </div>
-                                </div>
-                                <div class="d-flex justify-content-center">
-                                  <button
-                                    type="button"
-                                    class="btn w-100 btn-warning"
-                                  >
-                                    Add
-                                  </button>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div> -->
 
                         <div
                           class="modal fade"
@@ -639,101 +554,6 @@
                           </div>
                         </div>
 
-                        <!-- Drive Configuration Modal -->
-                        <!-- <div
-                          class="modal fade"
-                          id="exampleModalCenter2"
-                          tabindex="-1"
-                          role="dialog"
-                          aria-labelledby="exampleModalCenter2Title"
-                          aria-hidden="true"
-                        >
-                          <div
-                            class="modal-dialog modal-dialog-centered"
-                            role="document"
-                          >
-                            <div class="modal-content">
-                              <div class="modal-body p-4">
-                                <div
-                                  class="d-flex justify-content-between align-items-center mb-2"
-                                >
-                                  <h6>Add Drive Configuration</h6>
-                                  <button
-                                    class="border-0 bg-transparent"
-                                    data-dismiss="modal"
-                                  >
-                                    <img src="/icons/close.png" alt="" />
-                                  </button>
-                                </div>
-                                <div>
-                                  <div class="form-group">
-                                    <label class="form-lables text-muted"
-                                      >Configuration name</label
-                                    >
-                                    <input
-                                      type="text"
-                                      class="form-control lable-color"
-                                      id="driveConfigurationName"
-                                      placeholder="Enter Configuration Name"
-                                    />
-                                  </div>
-                                  <div class="form-group">
-                                    <label class="form-lables text-muted"
-                                      >IP Address</label
-                                    >
-                                    <input
-                                      type="email"
-                                      class="form-control lable-color"
-                                      id="driveEmailAddress"
-                                      placeholder="Enter Email Address"
-                                    />
-                                  </div>
-                                  <div class="form-group">
-                                    <label class="form-lables text-muted"
-                                      >Folder Name</label
-                                    >
-                                    <input
-                                      type="password"
-                                      class="form-control lable-color"
-                                      id="driveEmailPassword"
-                                      placeholder="text"
-                                    />
-                                  </div>
-                                  <div class="form-group">
-                                    <label class="form-lables text-muted"
-                                      >Username</label
-                                    >
-                                    <input
-                                      type="text"
-                                      class="form-control lable-color"
-                                      id="driveSmapPort"
-                                      placeholder="Add SMAP Port"
-                                    />
-                                  </div>
-                                  <div class="form-group">
-                                    <label class="form-lables text-muted"
-                                      >Password</label
-                                    >
-                                    <input
-                                      type="password"
-                                      class="form-control lable-color"
-                                      id="driveSmtpServer"
-                                      placeholder="password"
-                                    />
-                                  </div>
-                                </div>
-                                <div class="d-flex justify-content-center">
-                                  <button
-                                    type="button"
-                                    class="btn w-100 btn-warning"
-                                  >
-                                    Add
-                                  </button>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div> -->
                         <div
                           class="modal fade"
                           id="exampleModalCenter2"
@@ -879,22 +699,258 @@
                     </p>
                     <div>
                       <div
-                        class="w-100 bg-dark d-flex flex-wrap pt-2 pb-1 rounded-3"
+                        class="w-100 d-flex flex-wrap mb-2"
+                        style="height: 56vh"
                       >
-                        <div
-                          class="d-flex justify-content-center align-content-center"
-                          style="width: 40%"
-                        >
-                          <h6 class="text-light">PO TYPE</h6>
+                        <div class="h-100" style="width: 30%">
+                          <h6
+                            class="w-100 d-flex justify-content-center rounded-left text-light py-3 bg-dark border-end mb-2"
+                          >
+                            PO TYPE
+                          </h6>
+                          <div
+                            class="w-100 pe-3"
+                            style="border-right: 1px dashed"
+                          >
+                            <div
+                              class="w-100 d-flex justify-content-center align-items-center bg-warning py-3 rounded-3 mb-2"
+                            >
+                            <img class="exceptio-checkbox cursor-p" src="/icons/checkboxEmpty.png" alt="" style="height: 16px; width: 16px;">
+                              <h6 class="ps-2 pt-2">Multiple Selection</h6>
+                            </div>
+                            <div
+                              class="w-100 border-top border-end rounded d-flex flex-column align-items-center"
+                              style="height: 398px"
+                            >
+                            <span class="mt-2 p-3 multiple-option">RM</span>
+                            <span class=" p-3 multiple-option">packaging</span>
+                            <span class=" p-3 multiple-option">Natural Goods</span>
+                            </div>
+                          </div>
                         </div>
                         <div
                           class="d-flex justify-content-center align-content-center"
-                          style="width: 60%"
+                          style="width: 70%"
                         >
-                          <h6 class="text-light">Exceptions</h6>
+                          <div class="w-100" >
+                            <h6
+                              class="w-100 d-flex justify-content-center rounded-right text-light py-3 bg-dark"
+                            >
+                              Exceptions
+                            </h6>
+                            <div class="w-100 exception-checkbox-container">
+                              <div class="ps-2 w-100 pb-3 border-bottom">
+                                <h6>Vendor Details</h6>
+                                <div class="exceptions-form-container">
+                                  <div class="box">
+                                    <img class="exceptio-checkbox" src="/icons/unmarked.png" alt="">
+                                    <h6 class="box-lable">Name</h6>
+                                  </div>
+                                  <div class="box">
+                                    <img class="exceptio-checkbox" src="/icons/unmarked.png" alt="">
+                                    <h6 class="box-lable">Address</h6>
+                                  </div>
+                                  <div class="box">
+                                    <img class="exceptio-checkbox" src="/icons/unmarked.png" alt="">
+                                    <h6 class="box-lable">Pan No.</h6>
+                                  </div>
+                                  <div class="box">
+                                    <img class="exceptio-checkbox" src="/icons/unmarked.png" alt="">
+                                    <h6 class="box-lable">Phone No.</h6>
+                                  </div>
+                                  <div class="box">
+                                    <img class="exceptio-checkbox" src="/icons/unmarked.png" alt="">
+                                    <h6 class="box-lable">GSTN/UN</h6>
+                                  </div>
+                                  <div class="box">
+                                    <img class="exceptio-checkbox" src="/icons/unmarked.png" alt="">
+                                    <h6 class="box-lable">State Name</h6>
+                                  </div>
+                                  <div class="box">
+                                    <img class="exceptio-checkbox" src="/icons/unmarked.png" alt="">
+                                    <h6 class="box-lable">Code</h6>
+                                  </div>
+                                  <div class="box">
+                                    <img class="exceptio-checkbox" src="/icons/unmarked.png" alt="">
+                                    <h6 class="box-lable">Email</h6>
+                                  </div>
+                                </div>
+
+                              </div>
+                              <div class="ps-2 mt-3 w-100 pb-3 border-bottom">
+                                <h6>Consignee (Ship To) Details</h6>
+                                <div class="exceptions-form-container">
+                                  <div class="box">
+                                    <img class="exceptio-checkbox" src="/icons/unmarked.png" alt="">
+                                    <h6 class="box-lable">Name</h6>
+                                  </div>
+                                  <div class="box">
+                                    <img class="exceptio-checkbox" src="/icons/unmarked.png" alt="">
+                                    <h6 class="box-lable">Address</h6>
+                                  </div>
+                                  <div class="box">
+                                    <img class="exceptio-checkbox" src="/icons/unmarked.png" alt="">
+                                    <h6 class="box-lable">Phone No.</h6>
+                                  </div>
+                                  <div class="box">
+                                    <img class="exceptio-checkbox" src="/icons/unmarked.png" alt="">
+                                    <h6 class="box-lable">GSTN/UN</h6>
+                                  </div>
+                                  <div class="box">
+                                    <img class="exceptio-checkbox" src="/icons/unmarked.png" alt="">
+                                    <h6 class="box-lable">State Name</h6>
+                                  </div>
+                                  <div class="box">
+                                    <img class="exceptio-checkbox" src="/icons/unmarked.png" alt="">
+                                    <h6 class="box-lable">Code</h6>
+                                  </div>
+                                </div>
+
+                              </div>
+                              <div class="ps-2 mt-3 w-100 pb-3 border-bottom">
+                                <h6>Buyer (Bill To) Details</h6>
+                                <div class="exceptions-form-container">
+                                  <div class="box">
+                                    <img class="exceptio-checkbox" src="/icons/unmarked.png" alt="">
+                                    <h6 class="box-lable">Name</h6>
+                                  </div>
+                                  <div class="box">
+                                    <img class="exceptio-checkbox" src="/icons/unmarked.png" alt="">
+                                    <h6 class="box-lable">Address</h6>
+                                  </div>
+                                  <div class="box">
+                                    <img class="exceptio-checkbox" src="/icons/unmarked.png" alt="">
+                                    <h6 class="box-lable">Phone No.</h6>
+                                  </div>
+                                  <div class="box">
+                                    <img class="exceptio-checkbox" src="/icons/unmarked.png" alt="">
+                                    <h6 class="box-lable">GSTN/UN</h6>
+                                  </div>
+                                  <div class="box">
+                                    <img class="exceptio-checkbox" src="/icons/unmarked.png" alt="">
+                                    <h6 class="box-lable">State Name</h6>
+                                  </div>
+                                  <div class="box">
+                                    <img class="exceptio-checkbox" src="/icons/unmarked.png" alt="">
+                                    <h6 class="box-lable">Code</h6>
+                                  </div>
+                                </div>
+
+                              </div>
+
+                              <div class="ps-2 mt-3 w-100 pb-3 border-bottom">
+                                <h6>Invoice Details</h6>
+                                <div class="exceptions-form-container">
+                                  <div class="box">
+                                    <img class="exceptio-checkbox" src="/icons/unmarked.png" alt="">
+                                    <h6 class="box-lable">Invoice No</h6>
+                                  </div>
+                                  <div class="box">
+                                    <img class="exceptio-checkbox" src="/icons/unmarked.png" alt="">
+                                    <h6 class="box-lable">Invoice Dateed</h6>
+                                  </div>
+                                  <div class="box">
+                                    <img class="exceptio-checkbox" src="/icons/unmarked.png" alt="">
+                                    <h6 class="box-lable">PO No./Buyers Order No.</h6>
+                                  </div>
+                                  <div class="box">
+                                    <img class="exceptio-checkbox" src="/icons/unmarked.png" alt="">
+                                    <h6 class="box-lable">Delivery Note</h6>
+                                  </div>
+                                  <div class="box">
+                                    <img class="exceptio-checkbox" src="/icons/unmarked.png" alt="">
+                                    <h6 class="box-lable">Mode/Term of Payment</h6>
+                                  </div>
+                                  <div class="box">
+                                    <img class="exceptio-checkbox" src="/icons/unmarked.png" alt="">
+                                    <h6 class="box-lable">Refrance No. & Date</h6>
+                                  </div>
+                                  <div class="box">
+                                    <img class="exceptio-checkbox" src="/icons/unmarked.png" alt="">
+                                    <h6 class="box-lable">Other Refrances</h6>
+                                  </div>
+                                  <div class="box">
+                                    <img class="exceptio-checkbox" src="/icons/unmarked.png" alt="">
+                                    <h6 class="box-lable">Dispatch Doc. Number</h6>
+                                  </div>
+                                  <div class="box">
+                                    <img class="exceptio-checkbox" src="/icons/unmarked.png" alt="">
+                                    <h6 class="box-lable">Dispatch Through</h6>
+                                  </div>
+                                  <div class="box">
+                                    <img class="exceptio-checkbox" src="/icons/unmarked.png" alt="">
+                                    <h6 class="box-lable">Destination</h6>
+                                  </div>
+                                  <div class="box">
+                                    <img class="exceptio-checkbox" src="/icons/unmarked.png" alt="">
+                                    <h6 class="box-lable">Terms of Delivery</h6>
+                                  </div>
+                                </div>
+
+                              </div>
+
+                              <div class="ps-2 mt-3 w-100 pb-3 border-bottom">
+                                <h6>Material Details</h6>
+                                <div class="exceptions-form-container">
+                                  <div class="box">
+                                    <img class="exceptio-checkbox" src="/icons/unmarked.png" alt="">
+                                    <h6 class="box-lable">No. & Kind Of Packages</h6>
+                                  </div>
+                                  <div class="box">
+                                    <img class="exceptio-checkbox" src="/icons/unmarked.png" alt="">
+                                    <h6 class="box-lable">Description Of Goods & Services</h6>
+                                  </div>
+                                  <div class="box">
+                                    <img class="exceptio-checkbox" src="/icons/unmarked.png" alt="">
+                                    <h6 class="box-lable">HSN/SAC</h6>
+                                  </div>
+                                  <div class="box">
+                                    <img class="exceptio-checkbox" src="/icons/unmarked.png" alt="">
+                                    <h6 class="box-lable">Per/Unit</h6>
+                                  </div>
+                                  <div class="box">
+                                    <img class="exceptio-checkbox" src="/icons/unmarked.png" alt="">
+                                    <h6 class="box-lable">Total Amount In Words</h6>
+                                  </div>
+                                  <div class="box">
+                                    <img class="exceptio-checkbox" src="/icons/unmarked.png" alt="">
+                                    <h6 class="box-lable">Refrance No. & Date</h6>
+                                  </div>
+                                  <div class="box">
+                                    <img class="exceptio-checkbox" src="/icons/unmarked.png" alt="">
+                                    <h6 class="box-lable">Other Refrances</h6>
+                                  </div>
+                                  <div class="box">
+                                    <img class="exceptio-checkbox" src="/icons/unmarked.png" alt="">
+                                    <h6 class="box-lable">Dispatch Doc. Number</h6>
+                                  </div>
+                                  <div class="box">
+                                    <img class="exceptio-checkbox" src="/icons/unmarked.png" alt="">
+                                    <h6 class="box-lable">Dispatch Through</h6>
+                                  </div>
+                                  <div class="box">
+                                    <img class="exceptio-checkbox" src="/icons/unmarked.png" alt="">
+                                    <h6 class="box-lable">Destination</h6>
+                                  </div>
+                                  <div class="box">
+                                    <img class="exceptio-checkbox" src="/icons/unmarked.png" alt="">
+                                    <h6 class="box-lable">Terms of Delivery</h6>
+                                  </div>
+                                </div>
+
+                              </div>
+                            </div>
+                          </div>
                         </div>
                       </div>
-                      <div></div>
+                      <div class="w-100">
+                        <button
+                          class="w-100 btn btn-warning"
+                          style="font-size: 14px; font-weight: 500"
+                        >
+                          Save Changes
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -916,14 +972,26 @@
                   <div class="w-100">
                     <div class="" style="border-bottom: 1px dashed">
                       <h6>SAP Integration</h6>
-                      <div class="mb-4 d-flex">
+                      <div class="mb-4 d-flex" id="container1">
                         <input
                           type="email"
-                          class="form-control"
+                          class="form-control inputTextStyle"
                           id="exampleInputEmail1"
                           aria-describedby="emailHelp"
+                          readonly
                         />
-                        <button class="btn btn-dark ms-2"><img src="/icons/pen.png" alt=""></button>
+                        <button class="btn btn-dark ms-2" id="penButton1">
+                          <img src="/icons/pen.png" alt="" />
+                        </button>
+                        <button
+                          class="btn btn-dark ms-2 me-2 hidden"
+                          id="updateButton1"
+                        >
+                          update
+                        </button>
+                        <button class="btn btn-light hidden" id="cancelButton1">
+                          cancel
+                        </button>
                       </div>
                     </div>
                     <div class="pt-2 mb-4">
@@ -931,16 +999,33 @@
                       <div class="mb-4 d-flex">
                         <input
                           type="email"
-                          class="form-control"
-                          id="exampleInputEmail1"
+                          class="form-control inputTextStyle"
+                          id="exampleInputEmail2"
                           aria-describedby="emailHelp"
+                          readonly
                         />
-                        <button class="btn btn-dark ms-2"><img src="/icons/pen.png" alt=""></button>
+                        <button class="btn btn-dark ms-2" id="penButton2">
+                          <img src="/icons/pen.png" alt="" />
+                        </button>
+                        <button
+                          class="btn btn-dark ms-2 me-2 hidden"
+                          id="updateButton2"
+                        >
+                          update
+                        </button>
+                        <button class="btn btn-light hidden" id="cancelButton2">
+                          cancel
+                        </button>
                       </div>
                     </div>
                   </div>
                   <div class="w-100">
-                    <button class="w-100 btn btn-warning">Save changes</button>
+                    <button
+                      class="w-100 btn btn-warning"
+                      id="saveChangesButton"
+                    >
+                      Save changes
+                    </button>
                   </div>
                 </div>
               </div>
