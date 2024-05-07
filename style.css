@@ -55,13 +55,28 @@
   border-radius: 4px;
   width: 100%;
   /* width: 532px; */
-  /* max-width: 521.73px;
-  min-width: 521.73px; */
+  max-width: 532px;
+  /*min-width: 521.73px; */
 }
 
 .box-lable {
   font-size: 14px;
   font-weight: 500;
+}
+
+.box-with-option{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  background-color: #ffffff;
+  /* padding-top: 7px; */
+  box-sizing: border-box;
+  height: 36px;
+  overflow: hidden;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  width: 100%;
+  /* width: 532px; */
 }
 
 .exceptio-checkbox {
@@ -71,3 +86,81 @@
   margin-right: 6px;
   cursor: pointer;
 }
+
+.ratio-options{
+  border: none;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* .form-control{
+  border-radius: ;
+} */
+
+.custom-select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg>');
+  background-repeat: no-repeat;
+  background-position: right 8px center;
+  padding-right: 30px; /* Adjust as needed */
+  border-radius: 0;
+}
+
+
+.form-select-sm {
+  border: none;
+  padding-top: .25rem;
+  padding-bottom: .25rem;
+  padding-left: .5rem;
+  font-size: .875rem;;
+  border-radius: 0;
+}
+
+.form-select-sm:active{
+  border: #ffffff;
+}
+
+.custom-select::-ms-expand {
+  display: none;
+}
+
+.custom-select {
+  position: relative;
+  width: 100%;
+}
+
+.selectfor-value {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-color: transparent;
+  padding: 5px 30px 5px 10px; /* Adjust padding to accommodate arrow */
+  width: 100%;
+}
+.selectfor-value:active {
+border: none;
+}
+
+.custom-options {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background-color: #fff;
+  border: 1px solid #ced4da;
+  border-top: none;
+  border-radius: 0 0 4px 4px;
+}
+
+.custom-option {
+  padding: 8px 10px;
+  cursor: pointer;
+}
+
+.custom-option:hover {
+  background-color: lightgray;
+}
+

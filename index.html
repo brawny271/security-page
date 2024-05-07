@@ -218,6 +218,74 @@
     input[readonly] {
       border: none;
     }
+
+    .checkbox-container {
+        display: block;
+        position: relative;
+        padding-left: 20px;
+        cursor: pointer;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+
+    /* Hide the browser's default checkbox */
+    .checkbox-container input {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+        height: 0;
+        width: 0;
+    }
+
+    /* Create a custom checkbox */
+    .checkmark {
+        position: absolute;
+        top: 2px;
+        left: 0;
+        height: 13.5px;
+        width: 13.5px;
+        background-color: transparent;
+        border: 1px solid;
+        border-radius: 2px;
+    }
+
+    /* On mouse-over, add a grey background color */
+    .checkbox-container:hover input~.checkmark {
+        background-color: transparent;
+    }
+
+    /* When the checkbox is checked, add a blue background */
+    .checkbox-container input:checked~.checkmark {
+        background-color: #FFCF40;
+        border: transparent;
+    }
+
+    /* Create the checkmark/indicator (hidden when not checked) */
+    .checkmark:after {
+        content: "";
+        position: absolute;
+        display: none;
+    }
+
+    /* Show the checkmark when checked */
+    .checkbox-container input:checked~.checkmark:after {
+        display: block;
+    }
+
+    /* Style the checkmark/indicator */
+    .checkbox-container .checkmark:after {
+        left: 5px;
+        top: 1px;
+        width: 4px;
+        height: 9px;
+        border: solid black;
+        border-width: 0 2px 2px 0;
+        -webkit-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+        transform: rotate(45deg);
+    }
   </style>
 
   <body>
@@ -708,25 +776,74 @@
                           >
                             PO TYPE
                           </h6>
-                          <div
+                          <!-- <div
                             class="w-100 pe-3"
                             style="border-right: 1px dashed"
                           >
                             <div
                               class="w-100 d-flex justify-content-center align-items-center bg-warning py-3 rounded-3 mb-2"
                             >
-                            <img class="exceptio-checkbox cursor-p" src="/icons/checkboxEmpty.png" alt="" style="height: 16px; width: 16px;">
+                              <label class="checkbox-container" style="width: 12px;height: 10px;">
+                                <input type="checkbox" id="multiSelectCheckbox" >
+                                <span class="checkmark" ></span>
+                              </label>
                               <h6 class="ps-2 pt-2">Multiple Selection</h6>
                             </div>
                             <div
                               class="w-100 border-top border-end rounded d-flex flex-column align-items-center"
                               style="height: 398px"
                             >
-                            <span class="mt-2 p-3 multiple-option">RM</span>
-                            <span class=" p-3 multiple-option">packaging</span>
-                            <span class=" p-3 multiple-option">Natural Goods</span>
+                            <span class=" p-3 multiple-option d-flex flex-wrap align-items-center">
+                              <label class="checkbox-container" style="width: 12px; height: 9px;">
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                              </label>
+                              RM </span>
+                            <span class=" p-3 multiple-option d-flex flex-wrap align-items-center">
+                              <label class="checkbox-container" style="width: 12px; height: 9px;">
+                                <input type="checkbox" class="">
+                                <span class="checkmark"></span>
+                              </label>packaging</span>
+                              <span class=" p-3 multiple-option d-flex flex-wrap align-items-center">
+                              <label class="checkbox-container" style="width: 12px; height: 9px;">
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                              </label>Natural Goods</span>
+                            </div>
+                          </div> -->
+                          <div class="w-100 pe-3" style="border-right: 1px dashed;">
+                            <div class="w-100 d-flex justify-content-center align-items-center bg-warning py-3 rounded-3 mb-2">
+                              <label class="checkbox-container" style="width: 12px;height: 10px;">
+                                <input type="checkbox" id="multiSelectCheckbox">
+                                <span class="checkmark"></span>
+                              </label>
+                              <h6 class="ps-2 pt-2">Multiple Selection</h6>
+                            </div>
+                            <div class="w-100 border-top border-end rounded d-flex flex-column align-items-center" style="height: 398px">
+                              <span class="p-3 multiple-option d-flex flex-wrap align-items-center" id="rmCheckbox" style="display: none;">
+                                <label class="checkbox-container" style="width: 12px; height: 9px;">
+                                  <input type="checkbox">
+                                  <span class="checkmark"></span>
+                                </label>
+                                RM
+                              </span>
+                              <span class="p-3 multiple-option d-flex flex-wrap align-items-center" id="packagingCheckbox" style="display: none;">
+                                <label class="checkbox-container" style="width: 12px; height: 9px;">
+                                  <input type="checkbox" class="">
+                                  <span class="checkmark"></span>
+                                </label>
+                                packaging
+                              </span>
+                              <span class="p-3 multiple-option d-flex flex-wrap align-items-center" id="naturalGoodsCheckbox" style="display: none;">
+                                <label class="checkbox-container" style="width: 12px; height: 9px;">
+                                  <input type="checkbox">
+                                  <span class="checkmark"></span>
+                                </label>
+                                Natural Goods
+                              </span>
                             </div>
                           </div>
+                          
                         </div>
                         <div
                           class="d-flex justify-content-center align-content-center"
@@ -741,201 +858,352 @@
                             <div class="w-100 exception-checkbox-container">
                               <div class="ps-2 w-100 pb-3 border-bottom">
                                 <h6>Vendor Details</h6>
-                                <div class="exceptions-form-container">
-                                  <div class="box">
-                                    <img class="exceptio-checkbox" src="/icons/unmarked.png" alt="">
-                                    <h6 class="box-lable">Name</h6>
-                                  </div>
-                                  <div class="box">
-                                    <img class="exceptio-checkbox" src="/icons/unmarked.png" alt="">
-                                    <h6 class="box-lable">Address</h6>
-                                  </div>
-                                  <div class="box">
-                                    <img class="exceptio-checkbox" src="/icons/unmarked.png" alt="">
-                                    <h6 class="box-lable">Pan No.</h6>
-                                  </div>
-                                  <div class="box">
-                                    <img class="exceptio-checkbox" src="/icons/unmarked.png" alt="">
-                                    <h6 class="box-lable">Phone No.</h6>
-                                  </div>
-                                  <div class="box">
-                                    <img class="exceptio-checkbox" src="/icons/unmarked.png" alt="">
-                                    <h6 class="box-lable">GSTN/UN</h6>
-                                  </div>
-                                  <div class="box">
-                                    <img class="exceptio-checkbox" src="/icons/unmarked.png" alt="">
-                                    <h6 class="box-lable">State Name</h6>
-                                  </div>
-                                  <div class="box">
-                                    <img class="exceptio-checkbox" src="/icons/unmarked.png" alt="">
-                                    <h6 class="box-lable">Code</h6>
-                                  </div>
-                                  <div class="box">
-                                    <img class="exceptio-checkbox" src="/icons/unmarked.png" alt="">
-                                    <h6 class="box-lable">Email</h6>
-                                  </div>
+                                <div id="" class="exceptions-form-container">
                                 </div>
-
                               </div>
                               <div class="ps-2 mt-3 w-100 pb-3 border-bottom">
                                 <h6>Consignee (Ship To) Details</h6>
                                 <div class="exceptions-form-container">
-                                  <div class="box">
-                                    <img class="exceptio-checkbox" src="/icons/unmarked.png" alt="">
+                                  <!-- <div class="box">
+                                    <label class="checkbox-container">
+                                      <input type="checkbox">
+                                      <span class="checkmark"></span>
+                                    </label>
                                     <h6 class="box-lable">Name</h6>
                                   </div>
                                   <div class="box">
-                                    <img class="exceptio-checkbox" src="/icons/unmarked.png" alt="">
+                                    <label class="checkbox-container">
+                                      <input type="checkbox">
+                                      <span class="checkmark"></span>
+                                    </label>
                                     <h6 class="box-lable">Address</h6>
                                   </div>
                                   <div class="box">
-                                    <img class="exceptio-checkbox" src="/icons/unmarked.png" alt="">
+                                    <label class="checkbox-container">
+                                      <input type="checkbox">
+                                      <span class="checkmark"></span>
+                                    </label>
                                     <h6 class="box-lable">Phone No.</h6>
                                   </div>
                                   <div class="box">
-                                    <img class="exceptio-checkbox" src="/icons/unmarked.png" alt="">
+                                    <label class="checkbox-container">
+                                      <input type="checkbox">
+                                      <span class="checkmark"></span>
+                                    </label>
                                     <h6 class="box-lable">GSTN/UN</h6>
                                   </div>
                                   <div class="box">
-                                    <img class="exceptio-checkbox" src="/icons/unmarked.png" alt="">
+                                    <label class="checkbox-container">
+                                      <input type="checkbox">
+                                      <span class="checkmark"></span>
+                                    </label>
                                     <h6 class="box-lable">State Name</h6>
                                   </div>
                                   <div class="box">
-                                    <img class="exceptio-checkbox" src="/icons/unmarked.png" alt="">
+                                    <label class="checkbox-container">
+                                      <input type="checkbox">
+                                      <span class="checkmark"></span>
+                                    </label>
                                     <h6 class="box-lable">Code</h6>
-                                  </div>
+                                  </div> -->
                                 </div>
 
                               </div>
                               <div class="ps-2 mt-3 w-100 pb-3 border-bottom">
                                 <h6>Buyer (Bill To) Details</h6>
                                 <div class="exceptions-form-container">
-                                  <div class="box">
-                                    <img class="exceptio-checkbox" src="/icons/unmarked.png" alt="">
+                                  <!-- <div class="box">
+                                    <label class="checkbox-container">
+                                      <input type="checkbox">
+                                      <span class="checkmark"></span>
+                                    </label>
                                     <h6 class="box-lable">Name</h6>
                                   </div>
                                   <div class="box">
-                                    <img class="exceptio-checkbox" src="/icons/unmarked.png" alt="">
+                                    <label class="checkbox-container">
+                                      <input type="checkbox">
+                                      <span class="checkmark"></span>
+                                    </label>
                                     <h6 class="box-lable">Address</h6>
                                   </div>
                                   <div class="box">
-                                    <img class="exceptio-checkbox" src="/icons/unmarked.png" alt="">
+                                    <label class="checkbox-container">
+                                      <input type="checkbox">
+                                      <span class="checkmark"></span>
+                                    </label>
                                     <h6 class="box-lable">Phone No.</h6>
                                   </div>
                                   <div class="box">
-                                    <img class="exceptio-checkbox" src="/icons/unmarked.png" alt="">
+                                    <label class="checkbox-container">
+                                      <input type="checkbox">
+                                      <span class="checkmark"></span>
+                                    </label>
                                     <h6 class="box-lable">GSTN/UN</h6>
                                   </div>
                                   <div class="box">
-                                    <img class="exceptio-checkbox" src="/icons/unmarked.png" alt="">
+                                    <label class="checkbox-container">
+                                      <input type="checkbox">
+                                      <span class="checkmark"></span>
+                                    </label>
                                     <h6 class="box-lable">State Name</h6>
                                   </div>
                                   <div class="box">
-                                    <img class="exceptio-checkbox" src="/icons/unmarked.png" alt="">
+                                    <label class="checkbox-container">
+                                      <input type="checkbox">
+                                      <span class="checkmark"></span>
+                                    </label>
                                     <h6 class="box-lable">Code</h6>
-                                  </div>
+                                  </div> -->
                                 </div>
 
                               </div>
 
                               <div class="ps-2 mt-3 w-100 pb-3 border-bottom">
                                 <h6>Invoice Details</h6>
-                                <div class="exceptions-form-container">
-                                  <div class="box">
-                                    <img class="exceptio-checkbox" src="/icons/unmarked.png" alt="">
+                                <div id="invoice_details" class="exceptions-form-container">
+                                  <!-- <div class="box">
+                                    <label class="checkbox-container">
+                                      <input type="checkbox">
+                                      <span class="checkmark"></span>
+                                    </label>
                                     <h6 class="box-lable">Invoice No</h6>
                                   </div>
                                   <div class="box">
-                                    <img class="exceptio-checkbox" src="/icons/unmarked.png" alt="">
+                                    <label class="checkbox-container">
+                                      <input type="checkbox">
+                                      <span class="checkmark"></span>
+                                    </label>
                                     <h6 class="box-lable">Invoice Dateed</h6>
                                   </div>
                                   <div class="box">
-                                    <img class="exceptio-checkbox" src="/icons/unmarked.png" alt="">
+                                    <label class="checkbox-container">
+                                      <input type="checkbox">
+                                      <span class="checkmark"></span>
+                                    </label>
                                     <h6 class="box-lable">PO No./Buyers Order No.</h6>
                                   </div>
                                   <div class="box">
-                                    <img class="exceptio-checkbox" src="/icons/unmarked.png" alt="">
+                                    <label class="checkbox-container">
+                                      <input type="checkbox">
+                                      <span class="checkmark"></span>
+                                    </label>
                                     <h6 class="box-lable">Delivery Note</h6>
                                   </div>
                                   <div class="box">
-                                    <img class="exceptio-checkbox" src="/icons/unmarked.png" alt="">
+                                    <label class="checkbox-container">
+                                      <input type="checkbox">
+                                      <span class="checkmark"></span>
+                                    </label>
                                     <h6 class="box-lable">Mode/Term of Payment</h6>
                                   </div>
                                   <div class="box">
-                                    <img class="exceptio-checkbox" src="/icons/unmarked.png" alt="">
+                                    <label class="checkbox-container">
+                                      <input type="checkbox">
+                                      <span class="checkmark"></span>
+                                    </label>
                                     <h6 class="box-lable">Refrance No. & Date</h6>
                                   </div>
                                   <div class="box">
-                                    <img class="exceptio-checkbox" src="/icons/unmarked.png" alt="">
+                                    <label class="checkbox-container">
+                                      <input type="checkbox">
+                                      <span class="checkmark"></span>
+                                    </label>
                                     <h6 class="box-lable">Other Refrances</h6>
                                   </div>
                                   <div class="box">
-                                    <img class="exceptio-checkbox" src="/icons/unmarked.png" alt="">
+                                    <label class="checkbox-container">
+                                      <input type="checkbox">
+                                      <span class="checkmark"></span>
+                                    </label>
                                     <h6 class="box-lable">Dispatch Doc. Number</h6>
                                   </div>
                                   <div class="box">
-                                    <img class="exceptio-checkbox" src="/icons/unmarked.png" alt="">
+                                    <label class="checkbox-container">
+                                      <input type="checkbox">
+                                      <span class="checkmark"></span>
+                                    </label>
                                     <h6 class="box-lable">Dispatch Through</h6>
                                   </div>
                                   <div class="box">
-                                    <img class="exceptio-checkbox" src="/icons/unmarked.png" alt="">
+                                    <label class="checkbox-container">
+                                      <input type="checkbox">
+                                      <span class="checkmark"></span>
+                                    </label>
                                     <h6 class="box-lable">Destination</h6>
                                   </div>
                                   <div class="box">
-                                    <img class="exceptio-checkbox" src="/icons/unmarked.png" alt="">
+                                    <label class="checkbox-container">
+                                      <input type="checkbox">
+                                      <span class="checkmark"></span>
+                                    </label>
                                     <h6 class="box-lable">Terms of Delivery</h6>
-                                  </div>
+                                  </div> -->
                                 </div>
 
                               </div>
 
                               <div class="ps-2 mt-3 w-100 pb-3 border-bottom">
                                 <h6>Material Details</h6>
-                                <div class="exceptions-form-container">
-                                  <div class="box">
-                                    <img class="exceptio-checkbox" src="/icons/unmarked.png" alt="">
+                                <div id="material_details" class="exceptions-form-container">
+                                  <!-- <div class="box">
+                                    <label class="checkbox-container">
+                                      <input type="checkbox">
+                                      <span class="checkmark"></span>
+                                    </label>
                                     <h6 class="box-lable">No. & Kind Of Packages</h6>
                                   </div>
                                   <div class="box">
-                                    <img class="exceptio-checkbox" src="/icons/unmarked.png" alt="">
+                                    <label class="checkbox-container">
+                                      <input type="checkbox">
+                                      <span class="checkmark"></span>
+                                    </label>
                                     <h6 class="box-lable">Description Of Goods & Services</h6>
                                   </div>
                                   <div class="box">
-                                    <img class="exceptio-checkbox" src="/icons/unmarked.png" alt="">
+                                    <label class="checkbox-container">
+                                      <input type="checkbox">
+                                      <span class="checkmark"></span>
+                                    </label>
                                     <h6 class="box-lable">HSN/SAC</h6>
                                   </div>
                                   <div class="box">
-                                    <img class="exceptio-checkbox" src="/icons/unmarked.png" alt="">
+                                    <label class="checkbox-container">
+                                      <input type="checkbox">
+                                      <span class="checkmark"></span>
+                                    </label>
                                     <h6 class="box-lable">Per/Unit</h6>
                                   </div>
                                   <div class="box">
-                                    <img class="exceptio-checkbox" src="/icons/unmarked.png" alt="">
+                                    <label class="checkbox-container">
+                                      <input type="checkbox">
+                                      <span class="checkmark"></span>
+                                    </label>
                                     <h6 class="box-lable">Total Amount In Words</h6>
                                   </div>
-                                  <div class="box">
-                                    <img class="exceptio-checkbox" src="/icons/unmarked.png" alt="">
-                                    <h6 class="box-lable">Refrance No. & Date</h6>
+                                  <div class="box-with-option">
+                                    <div class="d-flex flex-wrap align-items-center pl-2">
+                                      <label class="checkbox-container">
+                                      <input type="checkbox">
+                                      <span class="checkmark"></span>
+                                    </label>
+                                      <h6 class="box-lable pt-2">Quantity</h6>
+                                    </div>
+                                    <div class="d-flex w-50 justify-content-end border-start">
+                                      <select class="ratio-options">
+                                        <option value="option1" selected>Equal To (=)</option>
+                                        <option value="option2">Less Than (>)</option>
+                                      </select>
+                                    </div>
                                   </div>
-                                  <div class="box">
-                                    <img class="exceptio-checkbox" src="/icons/unmarked.png" alt="">
-                                    <h6 class="box-lable">Other Refrances</h6>
+                                  <div class="box-with-option">
+                                    <div class="d-flex flex-wrap align-items-center pl-2">
+                                      <label class="checkbox-container">
+                                        <input type="checkbox">
+                                        <span class="checkmark"></span>
+                                      </label>
+                                      <h6 class="box-lable pt-2">Rate</h6>
+                                    </div>
+                                    <div class="d-flex w-50 justify-content-end border-start">
+                                      <select class="ratio-options">
+                                        <option value="option1" selected>Equal To (=)</option>
+                                        <option value="option2">Less Than (>)</option>
+                                      </select>
+                                    </div>
                                   </div>
-                                  <div class="box">
-                                    <img class="exceptio-checkbox" src="/icons/unmarked.png" alt="">
-                                    <h6 class="box-lable">Dispatch Doc. Number</h6>
+                                  <div class="box-with-option">
+                                    <div class="d-flex flex-wrap align-items-center pl-2">
+                                      <label class="checkbox-container">
+                                        <input type="checkbox">
+                                        <span class="checkmark"></span>
+                                      </label>
+                                      <h6 class="box-lable pt-2">Amount</h6>
+                                    </div>
+                                    <div class="d-flex w-50 justify-content-end border-start">
+                                      <select class="ratio-options">
+                                        <option value="option1" selected>Equal To (=)</option>
+                                        <option value="option2">Less Than (>)</option>
+                                        
+                                      </select>
+                                    </div>
                                   </div>
-                                  <div class="box">
-                                    <img class="exceptio-checkbox" src="/icons/unmarked.png" alt="">
-                                    <h6 class="box-lable">Dispatch Through</h6>
+                                  <div class="box-with-option">
+                                    <div class="d-flex flex-wrap align-items-center pl-2">
+                                      <label class="checkbox-container">
+                                        <input type="checkbox">
+                                        <span class="checkmark"></span>
+                                      </label>
+                                      <h6 class="box-lable pt-2">GST/IGST/CGST(%)</h6>
+                                    </div>
+                                    <div class="d-flex w-50 justify-content-end border-start">
+                                      <select class="ratio-options">
+                                        <option value="option1" selected>Equal To (=)</option>
+                                        <option value="option2">Less Than (>)</option>
+                                        
+                                      </select>
+                                    </div>
                                   </div>
-                                  <div class="box">
-                                    <img class="exceptio-checkbox" src="/icons/unmarked.png" alt="">
-                                    <h6 class="box-lable">Destination</h6>
+                                  <div class="box-with-option">
+                                    <div class="d-flex flex-wrap align-items-center pl-2">
+                                      <label class="checkbox-container">
+                                        <input type="checkbox">
+                                        <span class="checkmark"></span>
+                                      </label>
+                                      <h6 class="box-lable pt-2">Total Quantity (Kgs)</h6>
+                                    </div>
+                                    <div class="d-flex w-50 justify-content-end border-start">
+                                      <select class="ratio-options">
+                                        <option value="option1" selected>Equal To (=)</option>
+                                        <option value="option2">Less Than (>)</option>
+                                        
+                                      </select>
+                                    </div>
                                   </div>
-                                  <div class="box">
-                                    <img class="exceptio-checkbox" src="/icons/unmarked.png" alt="">
-                                    <h6 class="box-lable">Terms of Delivery</h6>
+                                  <div class="box-with-option">
+                                    <div class="d-flex flex-wrap align-items-center pl-2">
+                                      <label class="checkbox-container">
+                                        <input type="checkbox">
+                                        <span class="checkmark"></span>
+                                      </label>
+                                      <h6 class="box-lable pt-2">Taxable Value</h6>
+                                    </div>
+                                    <div class="d-flex w-50 justify-content-end border-start">
+                                      <select class="ratio-options">
+                                        <option value="option1" selected>Equal To (=)</option>
+                                        <option value="option2">Less Than (>)</option>
+                                        
+                                      </select>
+                                    </div>
                                   </div>
+                                  <div class="box-with-option">
+                                    <div class="d-flex flex-wrap align-items-center pl-2">
+                                      <label class="checkbox-container">
+                                        <input type="checkbox">
+                                        <span class="checkmark"></span>
+                                      </label>
+                                      <h6 class="box-lable pt-2">Rate In Percent</h6>
+                                    </div>
+                                    <div class="d-flex w-50 justify-content-end border-start">
+                                      <select class="ratio-options">
+                                        <option value="option1" selected>Equal To (=)</option>
+                                        <option value="option2">Less Than (>)</option>
+                                      </select>
+                                    </div>
+                                  </div>
+                                  <div class="box-with-option">
+                                    <div class="d-flex flex-wrap align-items-center pl-2">
+                                      <label class="checkbox-container">
+                                        <input type="checkbox">
+                                        <span class="checkmark"></span>
+                                      </label>
+                                      <h6 class="box-lable pt-2">Total Tax Amount</h6>
+                                    </div>
+                                    <div class="d-flex w-50 justify-content-end border-start">
+                                      <select class="ratio-options">
+                                        <option value="option1" selected>Equal To (=)</option>
+                                        <option value="option2">Less Than (>)</option>
+                                      </select>
+                                    </div>
+                                  </div> -->
                                 </div>
 
                               </div>
@@ -945,7 +1213,7 @@
                       </div>
                       <div class="w-100">
                         <button
-                          class="w-100 btn btn-warning"
+                          class="w-100 btn btn-warning save-button"
                           style="font-size: 14px; font-weight: 500"
                         >
                           Save Changes
@@ -1043,12 +1311,30 @@
           // $('.invoice-filter-dropdown button').html(selectedItem)
         });
       });
+
+    document.addEventListener('DOMContentLoaded', function() {
+    var labels = document.querySelectorAll('.multiple-option label.checkbox-container');
+    labels.forEach(function(label) {
+      label.style.display = 'none';
+    });
+  });
+
+  document.getElementById('multiSelectCheckbox').addEventListener('change', function() {
+    var labels = document.querySelectorAll('.multiple-option label.checkbox-container');
+    labels.forEach(function(label) {
+      if (document.getElementById('multiSelectCheckbox').checked) {
+        label.style.display = 'inline-block';
+      } else {
+        label.style.display = 'none';
+      }
+    });
+  });
     </script>
-    <script src="script.js"></script>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
       crossorigin="anonymous"
     ></script>
+    <script src="/script.js"></script>
   </body>
 </html>

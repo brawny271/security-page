@@ -182,3 +182,149 @@ function appendAndFetch() {
   }
   
   appendAndFetch();
+
+
+  function fetchPlantWiseGroups() {
+    const url = 'http://172.16.12.21:8000/test/plant-wise-groups/';
+  
+    fetch(url)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then(data => {
+        console.log('Data from API:', data);
+        createElementsFromData(data);
+      })
+      .catch(error => {
+        console.error('There was a problem with the fetch operation:', error);
+      });
+  }
+  
+  // Call the fetch function to retrieve data from the API and create elements
+  fetchPlantWiseGroups();
+
+  // function createElementsFromData(data) {
+  //   data.forEach(obj => {
+  //     for (const prop in obj) {
+  //       const details = obj[prop];
+  //       const containerDiv = document.getElementById(prop); 
+        
+  //       if (containerDiv) {
+  //         details.forEach(detail => {
+  //           const boxDiv = document.createElement('div');
+  //           boxDiv.classList.add('box');
+  
+  //           const label = document.createElement('label');
+  //           label.classList.add('checkbox-container');
+  
+  //           const input = document.createElement('input');
+  //           input.setAttribute('type', 'checkbox');
+  
+  //           const spanCheckmark = document.createElement('span');
+  //           spanCheckmark.classList.add('checkmark');
+  
+  //           label.appendChild(input);
+  //           label.appendChild(spanCheckmark);
+  
+  //           const heading = document.createElement('h6');
+  //           heading.classList.add('box-lable');
+  //           heading.textContent = detail.name;
+  
+  //           boxDiv.appendChild(label);
+  //           boxDiv.appendChild(heading);
+  
+  //           containerDiv.appendChild(boxDiv);
+  //         });
+  //       } else {
+  //         console.error(`No div found with ID '${prop}'`);
+  //       }
+  //     }
+  //   });
+  // }
+
+  function createElementsFromData(data) {
+    data.forEach(obj => {
+      for (const prop in obj) {
+        const details = obj[prop];
+        const containerDiv = document.getElementById(prop);
+        
+        if (containerDiv) {
+          details.forEach(detail => {
+            const boxDiv = document.createElement('div');
+            boxDiv.classList.add('box');
+  
+            const label = document.createElement('label');
+            label.classList.add('checkbox-container');
+  
+            const input = document.createElement('input');
+            input.setAttribute('type', 'checkbox');
+  
+            const spanCheckmark = document.createElement('span');
+            spanCheckmark.classList.add('checkmark');
+  
+            label.appendChild(input);
+            label.appendChild(spanCheckmark);
+  
+            const heading = document.createElement('h6');
+            heading.classList.add('box-lable');
+            heading.textContent = detail.name;
+  
+            boxDiv.appendChild(label);
+            boxDiv.appendChild(heading);
+  
+            containerDiv.appendChild(boxDiv);
+          });
+        } else {
+          console.error(`No div found with ID '${prop}'`);
+        }
+      }
+    });
+  }
+  
+  // Function to collect checked values
+  function collectCheckedValues() {
+    const checkedValues = [];
+    const checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
+    checkboxes.forEach(checkbox => {
+      checkedValues.push(checkbox.parentNode.nextElementSibling.textContent);
+    });
+    return checkedValues;
+  }
+  
+  const saveChangesButton = document.querySelector('.save-button');
+  saveChangesButton.addEventListener('click', function() {
+    // Gather checked values
+    const checkedValues = collectCheckedValues();
+    
+    // Send checked values to the API only if there are checked values
+    if (checkedValues.length > 0) {
+      sendCheckedValuesToAPI(checkedValues);
+    }
+  });
+  
+  function sendCheckedValuesToAPI(checkedValues) {
+    const url = 'http://172.16.12.21:8000/test/plant-wise-groups/';
+    const payload = { checkedValues };
+    fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(payload),
+    })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return response.json();
+    })
+    .then(data => {
+      console.log('Response from API:', data);
+    })
+    .catch(error => {
+      console.error('There was a problem with the fetch operation:', error);
+    });
+  }
